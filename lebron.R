@@ -21,6 +21,15 @@ points <- ggplot(lebron, aes(x = Game, y = CUMPTS)) +
     axis.title = element_text(face = "bold")
   )
 
+#create the animation
+points_anim <- points +
+  transition_reveal(Game)
 
 # display plot
 points
+
+# display animation
+# points_anim
+
+# save the animation to a .mp4 file
+anim_save(file = "lebron.mp4", animation = points_anim, path = "/Users/mgillis/Desktop/projects/nba-scoring")
