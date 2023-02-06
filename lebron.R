@@ -10,6 +10,7 @@ points <- ggplot(lebron, aes(x = Game, y = CUMPTS)) +
   geom_line(linewidth = 1, color = "#EAEAEA") +
   geom_hline(yintercept = 38387, linewidth = 1, color = "#EAEAEA") +
   geom_point(size = 2, color = "#EAEAEA") + 
+  annotate("text", x = 1180, y = 3400, label = "test", family = "Rockwell", size = 15, color = "#EAEAEA") +
   labs(
     title = "Lebron James: Journey to Career Points Record",
     subtitle = "An animation of Lebron's total career points, as he breaks Kareem Abdul-Jabbar's record for most career points.",
