@@ -12,29 +12,35 @@ lebron <- read.csv("/Users/mgillis/Desktop/Projects/nba-scoring/data/Lebron.csv"
 crown <- image_read("/Users/mgillis/Desktop/Projects/nba-scoring/images/Crown_of_England_Old.png")
 
 # build plot
-points <- ggplot(lebron, aes(x = Game, y = CUMPTS, group = Tm)) +
+points <- ggplot(lebron, aes(x = Game, y = CUMPTS)) +
+  geom_area(aes(fill = factor(Tm))) +
+  scale_fill_manual(values = c("#041E42","#860038","#552583","#98002E")) +
+  scale_x_continuous(expand = expansion(add = c(10,0))) +
+  scale_y_continuous(expand = expansion(mult = c(0,0.06))) +
+  guides(fill = FALSE) +
   geom_line(linewidth = 1, color = "#EAEAEA") +
   geom_hline(yintercept = 38387, linewidth = 1, color = "#EAEAEA") +
   geom_point(size = 2, color = "#EAEAEA") + 
-  annotate("text", x = 1150, y = 2500, label = lebron$Date[30], family = "Rockwell", size = 10, color = "#EAEAEA") +
-  scale_y_continuous(labels = label_number(suffix = "K", scale = 1e-3)) +
+  annotate("text", x = 1250, y = 1900, label = lebron$Date[30], family = "Rockwell", face = "bold", size = 15, color = "#EAEAEA") +
   labs(
     title = "Lebron James: Journey to Career Points Record",
-    subtitle = "An animation of Lebron's total career points, as he breaks Kareem Abdul-Jabbar's \n record for most career points.",
+    subtitle = "An animation of Lebron's total points, as he breaks \n Kareem Abdul-Jabbar's record for most career points.",
     x = "Games (Career)",
     y = "Points (Total)"
-    ) +
+  ) +
   theme(
     text = element_text(family = "Trebuchet MS", color = "#EAEAEA"),
-    plot.title = element_text(face = "bold", size = 24, hjust = 0.5),
-    plot.subtitle = element_text(size = 15, hjust = 0.5),
-    axis.title = element_text(face = "bold", size = 20),
+    plot.title = element_text(face = "bold", size = 40, hjust = 0.5, margin = margin(1, 1, b = 12.5, 1, "pt")),
+    plot.subtitle = element_text(size = 22, hjust = 0.5, margin = margin(1, 1, b = 15, 1, "pt")),
+    axis.title.x = element_text(face = "bold", size = 20, margin = margin(t = 15, 1, 1, 1, "pt")),
+    axis.title.y = element_text(face = "bold", size = 20, margin = margin(1, r = 15, 1, 1, "pt")),
     plot.background = element_rect(fill = "#636363"),
     panel.background = element_rect(fill = "#484848"),
     panel.grid = element_blank(),
     axis.text = element_text(color = "#EAEAEA", size = 15),
     axis.ticks = element_line(color = "#EAEAEA", size = 2),
-    panel.grid.minor = element_blank()
+    panel.grid.minor = element_blank(),
+    plot.margin = margin(25,75,25,35, "pt")
   )
 
 # image annotations
@@ -46,7 +52,7 @@ final
 
 # create the animation
 #points_anim <- points +
- #transition_reveal(Game)
+  #transition_reveal(Game)
 
 # display animation
 #points_anim
